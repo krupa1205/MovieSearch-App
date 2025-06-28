@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineStream - Movie Search & Watchlist</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Floating Particles -->
+    <div class="floating-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-film"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>CineStream</h1>
+                    <span>Movie Discovery</span>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <button class="nav-btn active" data-section="search">
+                    <i class="fas fa-search"></i>
+                    <span>Search Movies</span>
+                </button>
+                <button class="nav-btn" data-section="watchlist">
+                    <i class="fas fa-bookmark"></i>
+                    <span>My Watchlist</span>
+                    <span class="count" id="watchlistCount">0</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- Search Section -->
+        <section class="section active" id="searchSection">
+            <div class="search-hero">
+                <h1 class="hero-title">Discover Amazing Movies</h1>
+                <p class="hero-subtitle">Search through thousands of movies and build your personal watchlist</p>
+                
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="searchInput" placeholder="Search for movies..." autocomplete="off">
+                        <button class="search-clear" id="searchClear">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="search-filters">
+                        <select id="yearFilter">
+                            <option value="">All Years</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                        </select>
+                        
+                        <select id="typeFilter">
+                            <option value="">All Types</option>
+                            <option value="movie">Movies</option>
+                            <option value="series">TV Series</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Results -->
+            <div class="results-container">
+                <div class="results-header" id="resultsHeader" style="display: none;">
+                    <h2 id="resultsTitle">Search Results</h2>
+                    <span class="results-count" id="resultsCount"></span>
+                </div>
+                
+                <div class="movies-grid" id="moviesGrid"></div>
+                
+                <!-- Loading State -->
+                <div class="loading-container" id="loadingContainer" style="display: none;">
+                    <div class="loading-spinner"></div>
+                    <p>Searching movies...</p>
+                </div>
+                
+                <!-- No Results -->
+                <div class="no-results" id="noResults" style="display: none;">
+                    <div class="no-results-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3>No movies found</h3>
+                    <p>Try searching with different keywords or adjust your filters</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Watchlist Section -->
+        <section class="section" id="watchlistSection">
+            <div class="watchlist-hero">
+                <h1 class="hero-title">My Watchlist</h1>
+                <p class="hero-subtitle" id="watchlistSubtitle">Your personal collection of movies to watch</p>
+            </div>
+            
+            <div class="watchlist-container">
+                <div class="movies-grid" id="watchlistGrid"></div>
+                
+                <!-- Empty Watchlist -->
+                <div class="empty-watchlist" id="emptyWatchlist">
+                    <div class="empty-icon">
+                        <i class="fas fa-bookmark"></i>
+                    </div>
+                    <h3>Your watchlist is empty</h3>
+                    <p>Start searching for movies and add them to your watchlist</p>
+                    <button class="cta-btn" onclick="showSection('search')">
+                        <i class="fas fa-search"></i>
+                        Search Movies
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Movie Modal -->
+    <div class="modal" id="movieModal">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
